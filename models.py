@@ -19,7 +19,7 @@ class User(Base):
         self.email = email
         self.password = password
 
-class Playlist(Base):
+class Group(Base):
     __tablename__ = 'groups'
     id = Column(Integer, primary_key=True, unique=True)
     name = Column(String)
@@ -28,6 +28,7 @@ class Playlist(Base):
     def __init__(self, name, is_public):
         self.name = name
         self.is_public = is_public
+
 class Note(Base):
     __tablename__ = 'notes'
     id = Column(Integer, primary_key=True, unique=True)
@@ -35,10 +36,10 @@ class Note(Base):
     text = Column(String)
     group_id = Column(Integer)
 
-    def __init__(self, name, text,  author):
+    def __init__(self, name, text,  group_id):
         self.name = name
         self.text = text
-        self.author = author
+        self.group_id = group_id
 
 class Invited(Base):
     __tablename__ = 'invited'
@@ -46,6 +47,7 @@ class Invited(Base):
     user_id = Column(Integer)
     group_id = Column(Integer)
 
-    def __init__(self, user_id, groupid):
+    def __init__(self, user_id, group_id):
         self.user_id = user_id
-        self.groupid = groupid
+        self.group_id = group_id
+
